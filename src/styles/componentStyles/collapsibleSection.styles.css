@@ -1,0 +1,36 @@
+.collapsible-button {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.collapsible-button:hover {
+    background-color: #a9a9a9;
+}
+
+.subNavList {
+    list-style: none;
+    padding-left: 15px;
+}
+
+.closedCollapsibleItem {
+    transition: 0.2s;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0px);
+}
+
+.openCollapsibleItem {
+    transition: 0.2s;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(10px);
+}

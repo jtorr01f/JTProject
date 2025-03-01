@@ -1,0 +1,20 @@
+.button {
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  min-width: "5rem";
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: #8a1fae;
+  color: white;
+}
+
+.secondary {
+  background-color: white;
+  color: #8a1fae;
+  border: 1px solid #8a1fae;
+}
