@@ -1,17 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "JTProject",
   description: "Fun side project to hone my React/Nextjs/Nodejs skills",
@@ -28,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`} style={{ height: "1000px", backgroundColor: "#504f4f" }}>
+      <body style={{ height: "1000px", backgroundColor: "#504f4f" }}>
         <div style={{ display: "flex", height: "100%" }}>
           <aside style={{ width: "250px", backgroundColor: "#504f4f" }}>
             {sidebar}
