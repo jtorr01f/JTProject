@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { IconMenu2 } from "@tabler/icons-react";
 
-import NavItem from "./NavItem.tsx";
-import CollapsibleSection from "./CollapsibleSection.tsx";
+import NavItem from "./NavItem";
+import CollapsibleSection from "./CollapsibleSection";
 
 import "@/styles/componentStyles/sidebar.styles.css";
 
