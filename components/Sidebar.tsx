@@ -49,6 +49,7 @@ const Sidebar = () => {
   };
 
   const sideBarStyle = (isOpen: boolean) => ({
+    position: "absolute" as const,
     width: isOpen ? "250px" : "60px",
     borderRadius: isOpen ? "0 0 8px 0" : "0",
     background: "rgb(114, 114, 114)",

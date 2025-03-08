@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    /* justify-content: start;
     height: 80%;
-    width: 80%;
-    border: 4px double white;
-    overflow:scroll;
+    width: 80%; */
+    /* border: 4px double white; */
+    /* overflow:scroll;
     border-radius: 8px;
-    padding: 2rem;
+    padding: 2rem; */
 }
 
 .bingo-header {
