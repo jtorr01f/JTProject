@@ -21,33 +21,29 @@ const TextInput = ({
   areaSize,
   onAreaChange,
   onInputChange,
-}: TextInputProps) => {
-  const Area = () => (
-    <textarea
-      id={id}
-      className={`input area ${areaSize || ""}`}
-      value={inputValue}
-      placeholder={placeholder}
-      onChange={onAreaChange}
-    />
-  );
-  const Input = () => (
-    <input
-      id={id}
-      className="input"
-      value={inputValue}
-      onChange={onInputChange}
-      placeholder={placeholder || ""}
-    />
-  );
-  return (
-    <>
-      {inputLabel && (
-        <label className="label" htmlFor={id} title={inputLabel} />
+}: TextInputProps) => (
+  <>
+    {inputLabel && (
+      <label className="label" htmlFor={id} title={inputLabel} />
+    )}
+    {inputType === "area" ? (
+      <textarea
+        id={id}
+        className={`input area ${areaSize || ""}`}
+        value={inputValue}
+        placeholder={placeholder}
+        onChange={onAreaChange}
+      />) 
+      : (
+        <input
+          id={id}
+          className="input"
+          value={inputValue}
+          onChange={onInputChange}
+          placeholder={placeholder || ""}
+        />
       )}
-      {inputType === "area" ? <Area /> : <Input />}
-    </>
-  );
-};
+  </>
+);
 
 export default TextInput;

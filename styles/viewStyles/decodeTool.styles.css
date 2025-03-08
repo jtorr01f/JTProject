@@ -6,7 +6,7 @@
 }
 
 .decode-button-wrapper {
-    width: 50%;
+    width: 70%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,4 +18,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#decodeTextArea {
+    width: 70%;
+}
+
+.decode-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.decode-info-icon {
+    margin-left: 6px;
+}
+
+.decode-results {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.results-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#copyDecodedTextButton {
+    margin-right: 5px;
 }

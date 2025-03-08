@@ -68,11 +68,6 @@ const Sidebar = () => {
       {isOpen && (
         <ul className="navList">
           <NavItem href="/" label="Dashboard" active={pathname === "/"} />
-          <NavItem
-            href="/schedule"
-            label="Schedule"
-            active={pathname === "/schedule"}
-          />
           <CollapsibleSection
             title="Other"
             isOpen={openSections["modals"]}
