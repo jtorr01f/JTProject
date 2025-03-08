@@ -15,7 +15,7 @@ const CollapsibleSection = ({
   return (
     <li>
       <button onClick={onToggle} className="collapsible-button ">
-        <div>
+        <div className="collapsible-title">
           {title}
         </div>
         <div>
