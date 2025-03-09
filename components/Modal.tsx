@@ -14,7 +14,6 @@ export default function Modal({
   const router = useRouter();
 
   useEffect(() => {
-    // Prevent scrolling when modal is open
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "auto";
@@ -30,7 +29,6 @@ export default function Modal({
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2>{title}</h2>
         {children}
-        <button onClick={closeModal}>Close</button>
       </div>
       <style jsx>{`
         @keyframes fadeIn {

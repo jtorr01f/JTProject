@@ -1,4 +1,4 @@
-import Dashboard from "@/views/Dashboard.view";
+import Dashboard from "@/views/Dashboard";
 
 const DashboardPage = () => <Dashboard />
 

@@ -1,0 +1,11 @@
+.date-picker-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-picker {
+  width: 80%;
+  border: lightgray 1px solid;
+  border-radius: 8px;
+  padding: 1rem;
+}

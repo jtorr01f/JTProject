@@ -22,9 +22,9 @@ const TextInput = ({
   onAreaChange,
   onInputChange,
 }: TextInputProps) => (
-  <>
+  <div className="input-wrapper">
     {inputLabel && (
-      <label className="label" htmlFor={id} title={inputLabel} />
+      <label className="label" htmlFor={id}>{inputLabel}</label>
     )}
     {inputType === "area" ? (
       <textarea
@@ -43,7 +43,7 @@ const TextInput = ({
           placeholder={placeholder || ""}
         />
       )}
-  </>
+  </div>
 );
 
 export default TextInput;

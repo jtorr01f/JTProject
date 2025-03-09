@@ -1,7 +1,7 @@
 import { ReactNode, Ref } from "react";
 import "../styles/componentStyles/button.styles.css";
 
-interface ButtonProps {
+export type ButtonProps = {
   id: string;
   onClick: () => void;
   buttonText: string;
@@ -25,8 +25,10 @@ const Button = ({
       ref={buttonRef}
       onClick={onClick}
     >
-      {buttonText}
       {buttonIcon || null}
+      <span className="button-text">
+        {buttonText}
+      </span>
     </button>
   );
 };
