@@ -44,21 +44,33 @@ const MinecraftBingo = () => {
   const tooltipText = "This simple feature is Minecraft Bingo! It was created to help a friend with an event they were hosting on a minecraft server. " +
   "The premise is simple, its bingo, but replace the numbers with minecraft items! Click the left button for a Bingo item, select the right to undo if need be.";
 
-  const getBingo = () => {
-    const key = uuidv4();
-    const MCItem = items[Math.floor(Math.random() * 24)];
-    const bingoValue = bingoObj[Math.floor(Math.random() * 5)];
-
-    const bingoItem = {
-      key,
-      number: bingo.length + 1,
-      value: `${bingoValue} - ${MCItem}`,
-    };
-    setBingo([...bingo, bingoItem]);
-  };
-
   const onItemUndo = () => {
     setBingo(bingo.slice(0, -1));
+  };
+
+  const getBingo = () => {
+    const bingoItem: string = items[Math.floor(Math.random() * items.length)];
+    const bingoLetter: string = bingoObj[Math.floor(Math.random() * bingoObj.length)];
+    const newBingo: string = `${bingoLetter} - ${bingoItem}`;
+    let isUnique = true;
+    for(let i = 0; i < bingo.length; i++) {
+      if (bingo[i].value === newBingo) {
+        isUnique = false;
+        break;
+      }
+    }
+    if (isUnique) {
+      setBingo([
+        ...bingo,
+        {
+          key: uuidv4(),
+          value: newBingo,
+          number: bingo.length + 1,
+        },
+      ]);
+    } else {
+      return getBingo();
+    }
   };
 
   return (
