@@ -1,62 +1,107 @@
-'use client';
-import Button from "@/components/Button";
-import "@/styles/viewStyles/dashboard.styles.css";
-import { useRouter } from "next/navigation";
-import { useRef } from "react";
+"use client";
+import { useState } from "react";
+import { IconArrowBackUp, IconConfetti, IconExclamationCircle } from "@tabler/icons-react";
+import { v4 as uuidv4 } from "uuid";
+import '../styles/viewStyles/minecraftBingo.styles.css';
+import Tooltip from "@/components/Tooltip";
 
-type TaskProps = {
-    taskName: string;
-    taskDesc: string;
-    taskDate: Date;
-}
+type BingoItem = {
+  key: string;
+  value: string;
+  number: number;
+};
 
 const Dashboard = () => {
-    const taskButtonRef = useRef(null);
-    const router = useRouter();
+  const [bingo, setBingo] = useState<BingoItem[]>([]);
+  const bingoObj = ["B", "I", "N", "G", "O"];
+  const items = [
+    "Glowberry",
+    "Cobweb",
+    "Nether Star",
+    "Breeze Rod",
+    "Cake",
+    "Pufferfish",
+    "Pigstep",
+    "Trident",
+    "Golden Carrot",
+    "Blaze Powder",
+    "Emerald",
+    "Redstone Dust",
+    "Golden Apple",
+    "Sniffer Egg",
+    "Elytra",
+    "Eye of Ender",
+    "Trial Key",
+    "Turtle Egg",
+    "Red Coral",
+    "Torchflower",
+    "Amethyst",
+    "Totem of Undying",
+    "Exp Bottle",
+    "Slime Ball",
+  ];
 
-    const now = new Date();
+  const tooltipText = "This simple feature is Minecraft Bingo! It was created to help a friend with an event they were hosting on a minecraft server. " +
+  "The premise is simple, its bingo, but replace the numbers with minecraft items! Click the left button for a Bingo item, select the right to undo if need be.";
 
-    const jtTasks = localStorage.getItem("jt-tasks") || "[]"
-    const todaysTasks = JSON.parse(jtTasks).filter((task: TaskProps) => new Date(task.taskDate).getDate === new Date().getDate);
-    
-    const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'  };
-    const formattedDate = now.toLocaleDateString('en-US', dateOptions);
+  const onItemUndo = () => {
+    setBingo(bingo.slice(0, -1));
+  };
 
-    const onButtonPressed = () => {
-        router.push('/addTask');
+  const getBingo = () => {
+    const bingoItem: string = items[Math.floor(Math.random() * items.length)];
+    const bingoLetter: string = bingoObj[Math.floor(Math.random() * bingoObj.length)];
+    const newBingo: string = `${bingoLetter} - ${bingoItem}`;
+    let isUnique = true;
+    for(let i = 0; i < bingo.length; i++) {
+      if (bingo[i].value === newBingo) {
+        isUnique = false;
+        break;
+      }
     }
+    if (isUnique) {
+      setBingo([
+        ...bingo,
+        {
+          key: uuidv4(),
+          value: newBingo,
+          number: bingo.length + 1,
+        },
+      ]);
+    } else {
+      return getBingo();
+    }
+  };
 
-    return (
-        <div className="dashboard-wrapper">
-            <div className="dashboard-header ">
-                <h3>Welcome to my portfolio!</h3>
-                <span>Todays Date and Time: {`${formattedDate}`}</span>
-            </div>
+  return (
+    <div className="bingo-wrapper">
+      <div className="bingo-desc">
+        <h3>Minecraft Bingo</h3>
+        <Tooltip text={tooltipText}>
+          <IconExclamationCircle className="bingo-info-icon" />
+        </Tooltip>
+      </div>
+      <div className="bingo-header">
+        <IconConfetti className="bingo-button" size={50} onClick={getBingo} />
+        <IconArrowBackUp
+          className="bingo-button"
+          onClick={onItemUndo}
+          size={50}
+        />
+      </div>
+      <div className="bingo-list-wrapper">
+        <ul className="bingo-items">
+          {bingo.map((item: BingoItem) => {
+            return (
+              <div className="bingo-item-wrapper"id={item.key} key={item.key}>
+                <li className="bingo-item">{`${item.number}.) ${item.value}`}</li>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-            <Button
-                id="add-task-button"
-                buttonRef={taskButtonRef}
-                buttonText="Add A Task"
-                onClick={onButtonPressed}
-                buttonType="primary"
-            />
-            <div className="task-card-wrapper">
-                {todaysTasks.map((task: TaskProps, index: number) => (
-                    <div key={`task-${index}`} className="todays-task-card">
-                        <div className="todays-task-header">
-                            <div>
-                                {task.taskName}
-                            </div>
-                            {new Date(task.taskDate).toLocaleDateString('en-US', {...dateOptions })}
-                        </div>
-                        <div className="todays-task-body">
-                            {task.taskDesc}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-}
-
-export default Dashboard;
+export default Dashboard
