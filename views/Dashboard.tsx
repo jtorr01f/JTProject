@@ -1,9 +1,12 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { IconArrowBackUp, IconConfetti, IconExclamationCircle } from "@tabler/icons-react";
 import { v4 as uuidv4 } from "uuid";
-import '../styles/viewStyles/minecraftBingo.styles.css';
+
 import Tooltip from "@/components/Tooltip";
+
+import '../styles/viewStyles/minecraftBingo.styles.css';
 
 type BingoItem = {
   key: string;
@@ -74,7 +77,7 @@ const Dashboard = () => {
   return (
     <div className="bingo-wrapper">
       <div className="bingo-desc">
-        <h3>Minecraft Bingo</h3>
+        <h2>Minecraft Bingo</h2>
         <Tooltip text={tooltipText}>
           <IconExclamationCircle className="bingo-info-icon" />
         </Tooltip>
