@@ -76,15 +76,17 @@ const Dashboard = () => {
 
   return (
     <div className="bingo-wrapper">
-      <div className="bingo-desc">
-        <h2>Minecraft Bingo</h2>
-        <Tooltip text={tooltipText}>
-          <IconExclamationCircle className="bingo-info-icon" />
-        </Tooltip>
-      </div>
       <div className="bingo-header">
-        <IconConfetti className="bingo-button" size={50} onClick={getBingo} />
-        <IconArrowBackUp className="bingo-button" onClick={onItemUndo} size={50} />
+        <div className="bingo-desc">
+          <h2>Minecraft Bingo</h2>
+          <Tooltip text={tooltipText}>
+            <IconExclamationCircle className="bingo-info-icon" />
+          </Tooltip>
+        </div>
+        <div className="bingo-button-wrapper">
+          <IconConfetti className="bingo-button" size={50} onClick={getBingo} />
+          <IconArrowBackUp className="bingo-button" onClick={onItemUndo} size={50} />
+        </div>
       </div>
       <div className="bingo-list-wrapper">
         <ul className="bingo-items">
