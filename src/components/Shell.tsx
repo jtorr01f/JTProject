@@ -15,7 +15,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="app">
-      <Sidebar open={open} onClose={() => setOpen(false)} />
+      <Sidebar />
 
       {/* Page content */}
       <main className={`content ${open ? "content-shift" : ""}`}>

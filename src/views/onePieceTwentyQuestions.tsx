@@ -5,6 +5,7 @@ import Link from "next/link";
 import '../styles/onePieceTwentyQuestions.css';
 import Tooltip from "../components/Tooltip";
 import { IconExclamationCircle } from "@tabler/icons-react";
+import useWindowSize from "../hooks/useWindowSize";
 
 type Character = {
   name?: string;
@@ -13,17 +14,20 @@ type Character = {
 
 export default function OnePieceTwentyQuestions() {
   const [characterInfo, setCharacterInfo] = useState<Character | null>(null);
+  const { width } = useWindowSize();
   const onCharacterGenerated = () => {
     const randomIndex = Math.floor(Math.random() * opCharacters.length);
     setCharacterInfo(opCharacters[randomIndex]);
   }
+
+  const isSmallScreen = width < 650;
 
   const tooltipText = "Click the Jolly Roger to randomly generate a character. Once you know your character, " 
   + "your opponent will ask questions to narrow them down while you do the same with them, the first to guess the character, wins! " 
   + "If you dont know that character, click on them to go to the character wiki! happy guessing!";
 
   return (
-    <section>
+    <section style={{ width }}>
       <div className="button-link">
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <h1 style={{ marginRight: '10px' }}>One Piece Twenty Questions</h1>
@@ -35,7 +39,7 @@ export default function OnePieceTwentyQuestions() {
         <h3>Currently there are {opCharacters.length} characters in the List</h3>
         <button className="button" onClick={onCharacterGenerated} />
         <button style={{ marginTop: '20px', marginBottom: '20px', backgroundColor: 'grey', color: 'white', padding: '10px',  }} onClick={() => setCharacterInfo(null)}>Clear</button>
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: '1px white solid', borderRadius: '8px', width: '600px', padding: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: isSmallScreen ? 'none' : '1px white solid', borderRadius: '8px', width: '600px', padding: '20px' }}>
           <h3>
             {characterInfo ? "Your Character is..." : "Click the Jolly Roger to get your character!"}
           </h3>

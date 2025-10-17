@@ -9,20 +9,14 @@ const LINKS = [
   // { href: "/toDo", label: "To Do" }
 ];
 
-export default function Sidebar({
-  open,
-  onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
+export default function Sidebar() {
   return (
-    <aside className={`sidebar ${open ? "open" : ""}`} role="navigation" aria-label="Sidebar">
+    <aside className={`sidebar`} role="navigation" aria-label="Sidebar">
       <nav>
         <ul>
           {LINKS.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} onClick={onClose}>
+              <Link href={l.href}>
                 {l.label}
               </Link>
             </li>
