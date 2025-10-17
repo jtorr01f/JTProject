@@ -1,35 +1,29 @@
 {
-  "name": "jt_project",
+  "name": "jtprojecttwo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build --turbopack",
     "start": "next start",
-    "lint-fix": "next lint --fix",
-    "lint": "next lint",
-    "format": "prettier --write ."
+    "lint": "eslint"
   },
   "dependencies": {
-    "@tabler/icons-react": "^3.29.0",
-    "@tailwindcss/postcss": "^4.0.9",
-    "eslint-plugin-prettier": "^5.2.3",
-    "next": "15.1.6",
-    "react": "^19.0.0",
-    "react-datepicker": "^8.1.0",
-    "react-dom": "^19.0.0",
-    "uuid": "^11.1.0"
+    "@tabler/icons-react": "^3.35.0",
+    "next": "15.5.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.1.6",
-    "postcss": "^8",
-    "prettier": "^3.5.2",
-    "tailwindcss": "^3.4.17",
+    "eslint-config-next": "15.5.4",
+    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }

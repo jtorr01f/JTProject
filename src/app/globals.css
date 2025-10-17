@@ -1,0 +1,58 @@
+/* app/globals.css */
+
+/* Reset-ish */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: #ffffff;
+  background: #7b7b7b;
+}
+
+/* Layout */
+.app { min-height: 100dvh; display: grid; grid-template-rows: auto 1fr; }
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  background: #ffffff; border-bottom: 1px solid #e5e7eb;
+}
+.brand { font-size: 16px; font-weight: 600; margin: 0; }
+
+.content {
+  padding: 24px;
+  transition: transform 220ms ease;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed; inset: 0 auto 0 0; width: 260px; z-index: 60;
+  transform: translateX(-100%);
+  transition: transform 220ms ease;
+  background: #505050; color: #e5e7eb;
+  display: flex; flex-direction: column;
+}
+.sidebar.open { transform: translateX(0); }
+
+.sidebar nav { padding: 16px; }
+.sidebar ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sidebar a {
+  display: block; padding: 10px 12px; border-radius: 8px; text-decoration: none;
+  color: #e5e7eb; font-weight: 500;
+}
+.sidebar a:hover { background: #1f2937; }
+
+/* Overlay (mobile) */
+.overlay {
+  position: fixed; inset: 0; z-index: 55;
+  background: rgba(0,0,0,0.35);
+}
+
+/* Responsive behavior:
+   On wide screens, pin sidebar open and shift content */
+@media (min-width: 1024px) {
+  .sidebar { transform: translateX(0); }
+  .overlay { display: none; }
+  .content { margin-left: 260px; }
+}
