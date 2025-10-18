@@ -1,12 +1,11 @@
 'use client';
-import React, { ChangeEvent, FC, InputHTMLAttributes, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import { opCharacters } from "@/src/constants/onePieceCharacters";
 import Link from "next/link";
 import '../styles/onePieceTwentyQuestions.css';
 import Tooltip from "../components/Tooltip";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { RadioGroupComponent } from "../components/RadioGroup";
-import { useWindowSize } from "../hooks/useWindowSize";
 
 type Character = {
   name?: string;
@@ -16,7 +15,7 @@ type Character = {
 type VoidFunc = () => void;
 type EventFunc = (e: ChangeEvent<HTMLInputElement>) => void
 type QuestionOptions = {
-  id: number,
+  id: string,
   question: string,
   answer: string
 }
@@ -26,8 +25,6 @@ const OnePieceTwentyQuestions: FC = () => {
   const [selectedValue, setSelectedValue] = useState<string>("");
   const [questionsList, setQuestionsList] = useState<QuestionOptions[]>([]);
 
-  const { width } = useWindowSize();
-
   const onCharacterGenerated: VoidFunc = () => {
     const randomIndex = Math.floor(Math.random() * opCharacters.length);
     setCharacterInfo(opCharacters[randomIndex]);
@@ -35,10 +32,17 @@ const OnePieceTwentyQuestions: FC = () => {
 
   const resetInfo: VoidFunc = () => setCharacterInfo(null);
 
+  const resetQuestions: VoidFunc = () => setQuestionsList([]);
+
   const updateQuestionText: EventFunc = (e) => setQuestionText(e.target.value);
 
   const updateQuestionList: VoidFunc = () => {
-    const currentSet = { id: questionsList.length, question: questionText, answer: selectedValue }
+    const id =
+      typeof crypto !== "undefined" && "randomUUID" in crypto 
+        ? crypto.randomUUID()
+        : String(Date.now());
+
+    const currentSet = { id: id, question: questionText, answer: selectedValue }
     const newArray = [...questionsList, currentSet];
     if (questionText.length > 0 && selectedValue.length > 0) {
       setQuestionText("");
@@ -63,9 +67,9 @@ const OnePieceTwentyQuestions: FC = () => {
     <section>
       <div className="opWrapper">
         <div className="opHeader">
-          <p className="opHeaderText" style={{ marginRight: '10px' }}>One Piece Twenty Questions</p>
+          <p className="opHeaderText" style={{ marginRight: '10px' }}>OP 20 Questions</p>
           <Tooltip text={tooltipText}>
-            <IconExclamationCircle className="bingo-info-icon" />
+            <IconExclamationCircle className="info-icon" />
           </Tooltip>
         </div>
         <p className="opHeaderSubtext">Currently there are {opCharacters.length} characters in the List</p>
@@ -98,6 +102,7 @@ const OnePieceTwentyQuestions: FC = () => {
             ))}
           </ul>
         </div>
+        <button className="opClearQuestions" onClick={resetQuestions}>Clear Questions</button>
       </div>
     </section>
   );
