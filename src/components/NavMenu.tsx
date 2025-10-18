@@ -4,11 +4,12 @@ import { IconArrowLeft, IconMenu2 } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState, FC } from "react";
 import { useClickOutside } from "../hooks/useClickOutside";
-import '../styles/navMenu.css';
+import '../styles/Components/navMenu.css';
 
 const LINKS = [
   { href: "/minecraftBingo", label: "Minecraft Bingo" },
   { href: "/onePieceTwentyQuestions", label: "One Piece Twenty Questions" },
+  { href: "/toDo", label: "To Do List" },
 ];
 
 const NavMenu: FC = () => {

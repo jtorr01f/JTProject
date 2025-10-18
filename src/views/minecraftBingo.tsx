@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import Tooltip from "@/src/components/Tooltip";
 
-import '../styles/minecraftBingo.css';
+import '../styles/Views/minecraftBingo.css';
 
 type BingoItem = {
   key: string;

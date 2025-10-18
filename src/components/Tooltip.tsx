@@ -1,5 +1,5 @@
 import React, { FC, useState, ReactNode } from 'react';
-import '../styles/tooltip.css';
+import '../styles/Components/tooltip.css';
 import { useClickOutside } from '../hooks/useClickOutside';
 
 interface TooltipProps {

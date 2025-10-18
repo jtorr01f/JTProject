@@ -2,10 +2,10 @@
 import React, { ChangeEvent, FC, useState } from "react";
 import { opCharacters } from "@/src/constants/onePieceCharacters";
 import Link from "next/link";
-import '../styles/onePieceTwentyQuestions.css';
 import Tooltip from "../components/Tooltip";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { RadioGroupComponent } from "../components/RadioGroup";
+import '../styles/Views/onePieceTwentyQuestions.css';
 
 type Character = {
   name?: string;

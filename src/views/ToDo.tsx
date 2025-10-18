@@ -1,9 +1,10 @@
 "use client";
 
-import { FC, useState } from "react";
-import "../styles/toDo.css";
+import { FC, useEffect, useState } from "react";
 import Tooltip from "../components/Tooltip";
 import { IconExclamationCircle, IconX } from "@tabler/icons-react";
+import "../styles/Views/toDo.css";
+import { Checkbox } from "../components/Checkbox";
 
 type ToDoItem = {
   id: string;
@@ -12,11 +13,18 @@ type ToDoItem = {
 }
 
 const ToDo: FC = () => {
-  const savedItems = JSON.parse(localStorage.getItem('todo-items'));
-  const [toDoItems, setToDoItems] = useState<ToDoItem[]>(savedItems || []);
+  const [toDoItems, setToDoItems] = useState<ToDoItem[]>([]);
   const [toDoText, setToDoText] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");
   const [filterIncomplete, setFilterIncomplete] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedItems = localStorage.getItem(`todo-items`);
+    if (storedItems) {
+      setToDoItems(JSON.parse(storedItems));
+    }
+  }, []);
+
   const addToDo = () => {
     const text = toDoText.trim();
     if (!text) return;
@@ -53,7 +61,7 @@ const ToDo: FC = () => {
         <input className="toDoSearch" value={searchText} placeholder="search" onChange={(e) => { setSearchText(e.target.value) }} />
         <div>
           <label htmlFor="incompleteFilter">Show Incomplete Only</label>
-          <input id="incompleteFilter" type="checkbox" checked={filterIncomplete} onChange={() => setFilterIncomplete(!filterIncomplete)} style={{ marginLeft: "1rem" }} />
+          <Checkbox id="incompleteFilter" checked={filterIncomplete} onChange={() => setFilterIncomplete(!filterIncomplete)} />
         </div>
       </div>
       <div className="addToDoWrapper">
@@ -69,14 +77,13 @@ const ToDo: FC = () => {
         <div className="toDoItemWrapper" key={toDoItem.id}>
           <p className="toDoItemText">{toDoItem.toDo}</p>
           <div className="toDoItemActions">
-            <input 
-              type="checkbox" 
+            <Checkbox 
+              id={`toDoCheckbox-${toDoItem.id}`}  
               checked={toDoItem.done} 
-              onChange={() => {
-                setToDoItems(prev => prev.map(item => item.id === toDoItem.id ? { ...item, done: !item.done } : item));
-              }} 
-            />
-            <button 
+              onChange={(checked) => {
+                setToDoItems(prev => prev.map(item => item.id === toDoItem.id ? { ...item, done: checked } : item));
+              }} />
+            <button
               type="button"
               className="toDoDeleteButton"
               onClick={() => setToDoItems(toDoItems.filter((item) => item.id !== toDoItem.id))}
