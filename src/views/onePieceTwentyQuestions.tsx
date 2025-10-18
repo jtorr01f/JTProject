@@ -15,6 +15,7 @@ type Character = {
 export default function OnePieceTwentyQuestions() {
   const [characterInfo, setCharacterInfo] = useState<Character | null>(null);
   const { width } = useWindowSize();
+
   const onCharacterGenerated = () => {
     const randomIndex = Math.floor(Math.random() * opCharacters.length);
     setCharacterInfo(opCharacters[randomIndex]);
@@ -27,26 +28,24 @@ export default function OnePieceTwentyQuestions() {
   + "If you dont know that character, click on them to go to the character wiki! happy guessing!";
 
   return (
-    <section style={{ width }}>
-      <div className="button-link">
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-          <h1 style={{ marginRight: '10px' }}>One Piece Twenty Questions</h1>
+    <section style={{ width: isSmallScreen ? '350px' : '100%' }}>
+      <div className="opWrapper">
+        <div className="opHeader">
+          <p className="opHeaderText" style={{ marginRight: '10px' }}>One Piece Twenty Questions</p>
           <Tooltip text={tooltipText}>
             <IconExclamationCircle className="bingo-info-icon" />
           </Tooltip>
         </div>
-
-        <h3>Currently there are {opCharacters.length} characters in the List</h3>
-        <button className="button" onClick={onCharacterGenerated} />
-        <button style={{ marginTop: '20px', marginBottom: '20px', backgroundColor: 'grey', color: 'white', padding: '10px',  }} onClick={() => setCharacterInfo(null)}>Clear</button>
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', border: isSmallScreen ? 'none' : '1px white solid', borderRadius: '8px', width: '600px', padding: '20px' }}>
-          <h3>
-            {characterInfo ? "Your Character is..." : "Click the Jolly Roger to get your character!"}
-          </h3>
-          {characterInfo && (
+        <p className="opHeaderSubtext">Currently there are {opCharacters.length} characters in the List</p>
+        <button className="opButton" onClick={onCharacterGenerated} />
+        <button className="clearButton" onClick={() => setCharacterInfo(null)}>Clear</button>
+        <p className="opLinkHeader">
+          {characterInfo ? "Your Character is..." : "Click the Jolly Roger to get your character!"}
+        </p>
+        {characterInfo && (
           <div>
             <Link
-              className="link"
+              className="opLink"
               href={characterInfo.additionalInformation} 
               target="_blank" 
               rel="noopener noreferrer">
@@ -54,7 +53,6 @@ export default function OnePieceTwentyQuestions() {
             </Link>
           </div>
         )}
-        </div>
       </div>
     </section>
   );

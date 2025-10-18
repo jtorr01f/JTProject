@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Sidebar from "./Sidebar";
+import NavMenu from "./NavMenu";
 
 export default function Shell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
-  // Close sidebar on route change (optional nicety)
   useEffect(() => {
     const handleRouteChange = () => setOpen(false);
     window.addEventListener("hashchange", handleRouteChange);
@@ -15,8 +14,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="app">
-      <Sidebar />
-
+      <NavMenu />
       {/* Page content */}
       <main className={`content ${open ? "content-shift" : ""}`}>
         {children}
