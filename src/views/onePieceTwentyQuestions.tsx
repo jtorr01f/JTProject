@@ -6,6 +6,7 @@ import '../styles/onePieceTwentyQuestions.css';
 import Tooltip from "../components/Tooltip";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { RadioGroupComponent } from "../components/RadioGroup";
+import { useWindowSize } from "../hooks/useWindowSize";
 
 type Character = {
   name?: string;
@@ -25,7 +26,8 @@ const OnePieceTwentyQuestions: FC = () => {
   const [selectedValue, setSelectedValue] = useState<string>("");
   const [questionsList, setQuestionsList] = useState<QuestionOptions[]>([]);
 
-  console.log(questionText, selectedValue)
+  const { width } = useWindowSize();
+
   const onCharacterGenerated: VoidFunc = () => {
     const randomIndex = Math.floor(Math.random() * opCharacters.length);
     setCharacterInfo(opCharacters[randomIndex]);
@@ -45,8 +47,9 @@ const OnePieceTwentyQuestions: FC = () => {
     }
   }
 
-  const tooltipText = "Click the Jolly Roger to randomly generate a character. Once you know your character, " 
-  + "your opponent will ask questions to narrow them down while you do the same with them, the first to guess the character, wins! " 
+  const tooltipText = "Click the Jolly Roger to randomly generate a character. Once you know your character, "
+  + "your opponent will ask questions to narrow them down while you do the same with them, the first to guess the character, wins! "
+  + "Use the question tracker to log what you've asked about their character."
   + "If you dont know that character, click on them to go to the character wiki! happy guessing!";
 
   const options = [
