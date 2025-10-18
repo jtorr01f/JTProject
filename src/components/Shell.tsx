@@ -1,9 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode, FC } from "react";
 import NavMenu from "./NavMenu";
 
-export default function Shell({ children }: { children: React.ReactNode }) {
+interface ShellProps {
+  children: ReactNode
+}
+
+const Shell: FC<ShellProps> = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -25,3 +29,5 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
+export default Shell;

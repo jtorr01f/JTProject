@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import React, { FC, useState, ReactNode } from 'react';
 import '../styles/tooltip.css';
 
 interface TooltipProps {
@@ -6,7 +6,7 @@ interface TooltipProps {
   text: string;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ children, text }) => {
+const Tooltip: FC<TooltipProps> = ({ children, text }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (

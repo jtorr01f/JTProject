@@ -25,7 +25,6 @@
 }
 
 .clearButton {
-  margin-top: 20px; 
   margin-bottom: 20px; 
   background-color: grey; 
   color: white; 
@@ -68,4 +67,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.opQuestion {
+  margin-top: 5px;
+  width: 90%;
+  padding: 1.2rem;
+  border-radius: 8px;
+}
+
+.opQuestionWrapper {
+  margin: 1rem 0 1rem 0;
+  width: 90vw;
+  padding: 1rem;
+}
+.opList {
+  margin-top: 1rem;
+  border: white 1px solid;
+  border-radius: 8px;
+  padding: 5px;
+  height: 200px;
+  overflow: scroll;
+}
+
+.opListItem {
+  margin: .5rem 0;
+}
+
+.opAddButton {
+  margin-left: 5px;
+  padding: 8px;
+}
+
+.opQuestionBtnGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

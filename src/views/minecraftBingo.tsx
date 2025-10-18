@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { IconArrowBackUp, IconConfetti, IconExclamationCircle } from "@tabler/icons-react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -37,7 +37,7 @@ const getAllBingoCombinations = () => {
   return all;
 };
 
-const MinecraftBingo = () => {
+const MinecraftBingo: FC = () => {
   const [bingo, setBingo] = useState<BingoItem[]>([]);
   const [bingoPool, setBingoPool] = useState<string[]>([]);
 

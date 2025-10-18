@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { FC, useState } from "react";
 
 type ToDoItem = {
   id: string;
   toDo: string;
 }
 
-const ToDo = () => {
+const ToDo: FC = () => {
   const [toDoItems, setToDoItems] = useState<ToDoItem[]>([]);
   const [toDoText, setToDoText] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");

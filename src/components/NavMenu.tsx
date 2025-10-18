@@ -2,7 +2,7 @@
 
 import { IconArrowLeft, IconMenu2 } from "@tabler/icons-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, FC } from "react";
 import { useClickOutside } from "../hooks/useClickOutside";
 import '../styles/navMenu.css';
 
@@ -11,7 +11,7 @@ const LINKS = [
   { href: "/onePieceTwentyQuestions", label: "One Piece Twenty Questions" },
 ];
 
-export default function NavMenu() {
+const NavMenu: FC = () => {
   const [open, setOpen] = useState(false);
 
   const dropdownRef = useClickOutside(() => {
@@ -43,3 +43,5 @@ export default function NavMenu() {
     </div>
   );
 }
+
+export default NavMenu;
