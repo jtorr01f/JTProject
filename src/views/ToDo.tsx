@@ -12,7 +12,8 @@ type ToDoItem = {
 }
 
 const ToDo: FC = () => {
-  const [toDoItems, setToDoItems] = useState<ToDoItem[]>([]);
+  const savedItems = JSON.parse(localStorage.getItem('todo-items'));
+  const [toDoItems, setToDoItems] = useState<ToDoItem[]>(savedItems || []);
   const [toDoText, setToDoText] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");
   const [filterIncomplete, setFilterIncomplete] = useState<boolean>(false);
@@ -24,6 +25,8 @@ const ToDo: FC = () => {
       typeof crypto !== "undefined" && "randomUUID" in crypto 
         ? crypto.randomUUID()
         : String(Date.now());
+
+    localStorage.setItem(`todo-items`, JSON.stringify([...toDoItems, { id, toDo: text, done: false }]));
     
     setToDoItems(prev => [...prev, { id, toDo: text, done: false }]);
     setToDoText("");
