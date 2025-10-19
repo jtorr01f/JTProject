@@ -19,7 +19,6 @@ const NavMenu: FC = () => {
     setOpen(false);
   });
 
-
   return (
     <div>
       <IconMenu2 className="navMenuIcon" onClick={() => setOpen(true)}/>

@@ -5,11 +5,17 @@ export const Checkbox: React.FC<{
   id?: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
-}> = ({ id, checked, onChange }) => {
+  disabled?: boolean;
+}> = ({ id, checked, onChange, disabled }) => {
   return (
     <label className="container">
-      <input id={id} type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
-      <span className="checkmark"></span>
+      <input
+        id={id}
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        disabled={disabled} />
+      <span className={`checkmark ${disabled ? 'disabled' : ''}`}></span>
     </label>
   );
 }
