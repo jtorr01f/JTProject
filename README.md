@@ -1,6 +1,6 @@
 This personal project is just someting I can add little odds and ends to so I can keep busy with react/nextjs.
 
-All features added were games and tools that i felt could be used between within my friend group.
+All features added were games and tools that i felt could be used within my friend group.
 
 Such as Minecraft Bingo, a very niche game where a friend built a bingo game within minecraft with a specific set of items, so I wrote a tool to help get the random Letter/item combinations
 
